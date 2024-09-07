@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="sample.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>a</title>
+  </head>
+  <body>
+    <div id="app">
+        <!-- ヘッダーを上に持ってこれるかどうか-->
+        <div class="tab" id="contents">
+            <div class="tabList">
+                <button id="oshirase" class="active" @click="changeTab('oshirase')"><span>お知らせ</span></button>
+                <button id="news" @click="changeTab('news')"><span>news</span></button>
+            </div> 
+            <transion name="fade" v-if="this.tabType === 'oshirase'">
+                <div>
+                    <ul id="card_list">
+                        <li><div class="">shinya</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">shinya</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <button class="moreButton" @click="moreButton()">さらに読み込む</button>
+                        <a href="#app"><button>topへ戻る</button></a>
+                    </ul>
+                </div>
+            </transion>
+            <transion name="fade" v-if="this.tabType === 'news'">
+                <div>
+                    <ul>
+                        <li><div class="">megumi</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                        <li><div class="">a</div></li>
+                        <li><div class="">b</div></li>
+                        <li><div class="">c</div></li>
+                    </ul>
+                </div>
+            </transion>        
+        </div>
+            
+    </div>
+    <template id="card_list_add">
+        <li><div class="add_list"></div></li>
+    </template>
+    </body>
+
+    <script>
+        const { createApp, ref } = Vue
+      
+        createApp({
+          setup() {
+            const message = ref('Hello vue!')
+            return {
+              message
+            }
+          },
+          data(){
+                return {
+                    tabType:'oshirase'
+                }   
+            },
+          methods: {                    
+                changeTab: function(tab) {   
+                    this.tabType  = tab
+                    const oshirase = document.getElementById('oshirase')
+                    console.log(oshirase)
+                    const news = document.getElementById('news')
+                    tab ==='oshirase'? oshirase.classList.add('active'):oshirase.classList.remove('active')
+                    tab ==='news'? news.classList.add('active'):news.classList.remove('active')
+                },
+                moreButton: function() { 
+                    const btn = document.getElementsByClassName("moreButton")
+                    //　ボタン非表示
+                    for ( let i = 0; i < btn.length; i ++ ){
+	                    console.log(btn[i]);
+                        btn[i].setAttribute('style', 'display:none;')    
+                    }
+                    // リスト挿入
+                    // 残りのjsonをapiで追加で持ってくる処理が必要。
+                    const arr = [{"name":"add_1"},{"name":"add_2"},{"name":"add_3"}];
+                    const template = document.getElementById('card_list_add');
+                    for ( let i = 0; i < arr.length; i ++ ){
+                        const clone = template.content.cloneNode(true);
+                        clone.querySelector('.add_list').textContent = arr[i].name;
+                        document.getElementById('card_list').appendChild(clone);
+                    }
+                }
+  }
+        }).mount('#app')
+      </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+/* #header {
+    position: fixed;
+} */
+
+#contents {
+    overflow-y: auto;
+}
+
+
+button {
+    /*ボタンの枠デザインのカット*/
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    background: none;
+
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    align-items: center;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 700;
+    height: 100%;
+    justify-content: center;
+    line-height: 1.4em;
+    outline: none;
+    overflow: hidden;
+    padding: 0 24px;
+    position: relative;
+}
+
+button.active {
+    border-bottom: 4px solid;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.tabList {
+    display: flex;
+
+}
