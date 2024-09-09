@@ -11,8 +11,8 @@
   <body>
     <div id="app">
         <!-- ヘッダーを上に持ってこれるかどうか-->
-        <div class="tab" id="contents">
-            <div class="tabList">
+        <div class="tab" id="header">
+            <div class="tabList">  
                 <button id="oshirase" class="active" @click="changeTab('oshirase')"><span>お知らせ</span></button>
                 <button id="news" @click="changeTab('news')"><span>news</span></button>
             </div> 
@@ -56,7 +56,6 @@
                         <li><div class="">b</div></li>
                         <li><div class="">c</div></li>
                         <button class="moreButton" @click="moreButton()">さらに読み込む</button>
-                        <a href="#app"><button>topへ戻る</button></a>
                     </ul>
                 </div>
             </transion>
@@ -83,9 +82,10 @@
                         <li><div class="">c</div></li>
                     </ul>
                 </div>
-            </transion>        
+            </transion>  
+            <div class="scroll scroll-icon" @click="scrollTop()">topへ戻る</div>     
         </div>
-            
+       
     </div>
     <template id="card_list_add">
         <li><div class="add_list"></div></li>
@@ -132,9 +132,29 @@
                         clone.querySelector('.add_list').textContent = arr[i].name;
                         document.getElementById('card_list').appendChild(clone);
                     }
+                },
+                scrollTop: function() {
+                    const height = document.querySelector("#card_list").scrollTop;
+                    console.log(height);
+                    document.getElementById('card_list').scrollTop = 0;
                 }
   }
-        }).mount('#app')
+        }).mount('#app');
+        
       </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+    jQuery(function() {
+        // TODO:タブ単独のみ、切り替え時は未対応
+        var btn = $('.scroll');
+        var icon = $('.scroll-icon');
+        $('#card_list').on('load scroll', function(){
+            if($(this).scrollTop() > 100) {
+                btn.addClass('scroll-active');
+            }else{
+                btn.removeClass('scroll-active');
+            }
+        });
+        });</script>
   </body>
 </html>

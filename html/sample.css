@@ -1,9 +1,12 @@
-/* #header {
+#header {
     position: fixed;
-} */
+    top: 0;
+}
 
-#contents {
+#card_list {
     overflow-y: auto;
+    height: 500px;
+    scroll-behavior: smooth;
 }
 
 
@@ -52,5 +55,15 @@ button.active {
 
 .tabList {
     display: flex;
+}
 
+.scroll-icon {
+    /*デフォルトで非表示にする*/
+    opacity: 0;
+    visibility: hidden;
+}
+
+.scroll-active {
+    opacity: 1;
+    visibility: visible;
 }
